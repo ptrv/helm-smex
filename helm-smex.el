@@ -28,6 +28,7 @@
 ;;
 ;;   (require 'helm-smex)
 ;;   (global-set-key [remap execute-extended-command] #'helm-smex)
+;;   (global-set-key (kbd "M-X") #'helm-smex-major-mode-commands)
 ;;
 ;; Sources:
 ;; https://github.com/hatschipuh/helm-better-defaults
@@ -67,12 +68,30 @@
     :initform helm-smex--persistent-action)
    (persistent-help :initform "Describe command")))
 
+(defun helm-smex--major-mode-commands (mode map)
+  (unless smex-initialized-p
+    (smex-initialize))
+  (let ((commands (delete-dups (append (smex-extract-commands-from-keymap map)
+                                       (smex-extract-commands-from-features mode)))))
+    (smex-sort-according-to-cache (mapcar #'symbol-name commands))))
+
 ;;;###autoload
 (defun helm-smex ()
   (interactive)
   (let ((helm--mode-line-display-prefarg t))
     (helm :buffer "*helm-smex*"
-          :sources (helm-make-source "Smex" helm-smex-source))))
+          :sources (helm-make-source "Smex" 'helm-smex-source))))
+
+;;;###autoload
+(defun helm-smex-major-mode-commands ()
+  (interactive)
+  (let ((helm--mode-line-display-prefarg t)
+        (candidates-fn (apply #'helm-smex--major-mode-commands
+                              (list major-mode (current-local-map)))))
+    (helm :buffer "*helm-smex*"
+          :sources (helm-make-source
+                       "Smex-major-mode-commands" 'helm-smex-source
+                     :init nil :candidates candidates-fn))))
 
 (provide 'helm-smex)
 
