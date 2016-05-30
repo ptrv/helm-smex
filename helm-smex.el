@@ -73,7 +73,7 @@
     (smex-initialize))
   (let ((commands (delete-dups (append (smex-extract-commands-from-keymap map)
                                        (smex-extract-commands-from-features mode)))))
-    (smex-sort-according-to-cache (mapcar #'symbol-name commands))))
+    (mapcar #'symbol-name (smex-sort-according-to-cache commands))))
 
 ;;;###autoload
 (defun helm-smex ()
