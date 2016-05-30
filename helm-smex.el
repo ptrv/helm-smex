@@ -4,7 +4,7 @@
 
 ;; Author: Peter Vasil <mail@petervasil.net>
 ;; Version: 0.1
-;; Package-Requires: ((emacs "24") (smex "3.0") (helm "1.7.7))
+;; Package-Requires: ((emacs "24") (smex "3.0") (helm "1.7.7"))
 ;; Keywords: convenience
 
 ;; This program is free software; you can redistribute it and/or modify
