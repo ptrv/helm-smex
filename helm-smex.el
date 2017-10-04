@@ -54,6 +54,13 @@
        (smex-update)))
 
 (defun helm-smex--execute-command (command)
+  (unless (commandp command)
+    (error "`%s' is not a valid command name" command))
+  (setq this-command command)
+  ;; Normally `real-this-command' should never be changed, but here we really
+  ;; want to pretend that M-x <cmd> RET is nothing more than a "key binding" for
+  ;; <cmd>.
+  (setq real-this-command command)
   (let ((prefix-arg current-prefix-arg))
     (unwind-protect
         (command-execute command 'record)
