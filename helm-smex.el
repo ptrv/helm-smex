@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016  Peter Vasil
 
 ;; Author: Peter Vasil <mail@petervasil.net>
-;; Version: 0.2
+;; Version: 0.3
 ;; Package-Requires: ((emacs "24") (smex "3.0") (helm "1.7.7"))
 ;; Keywords: convenience
 
