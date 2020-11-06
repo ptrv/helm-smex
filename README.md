@@ -1,3 +1,6 @@
+[![MELPA](https://melpa.org/packages/helm-smex-badge.svg)](https://melpa.org/#/helm-smex)
+[![MELPA Stable](https://stable.melpa.org/packages/helm-smex-badge.svg)](https://stable.melpa.org/#/helm-smex)
+
 helm-smex
 =========
 
